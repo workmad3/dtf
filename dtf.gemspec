@@ -22,6 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "sqlite3"
 
   gem.add_development_dependency "standalone_migrations"
+  gem.add_development_dependency "turnip"
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "rspec-expectations"
   gem.add_development_dependency "pry"
@@ -31,7 +32,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "pry-editline"
   gem.add_development_dependency "pry-stack_explorer"
   gem.add_development_dependency "pry-exception_explorer"
-
-  gem.add_development_dependency "turnip"
 
 end
