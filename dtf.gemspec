@@ -24,7 +24,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "standalone_migrations"
   gem.add_development_dependency "turnip"
   gem.add_development_dependency "rspec"
-  gem.add_development_dependency "rspec-expectations"
   gem.add_development_dependency "pry"
   gem.add_development_dependency "pry-doc"
   gem.add_development_dependency "pry-nav"
