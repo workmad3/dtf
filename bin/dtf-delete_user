@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+#
+# This script is used to delete existing User entries in the db
+# This script will also need to reassign any existing entries such as for their
+# Verification Suites, Analysis Cases, and Case Tests to the Public user
+# The Public user is a generic user that needs to be created initially so that
+# when a user is deleted, their suites are assigned to Public if they wish to
+# be kept. The deletion should ask if the suites should be permanently deleted
+# or reassigned to Public.
+#
+# Ex: dtf-delete_user -u|--user @user_name [--all] [--reassign]
+# --all means to delete all the user test suites permenantly
+# --reassign means reassign test suites to the Public user for reuse by others
+#   first, and then delete the specified user.
+#
+# -u and EITHER --all OR --reassign are _required_ parameters
+#
+
