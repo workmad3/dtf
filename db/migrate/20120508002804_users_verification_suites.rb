@@ -1,6 +1,6 @@
 class UsersVerificationSuites < ActiveRecord::Migration
   def self.up
-    create_table :users_verification_suites, :id false do |t|
+    create_table :users_verification_suites, :id => false do |t|
     t.references :user
     t.references :verification_suite
     end
