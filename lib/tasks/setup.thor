@@ -9,11 +9,11 @@ class DtfSetup < Thor
     # relative to the gem, not the user.
     curr_dir = File.dirname(__FILE__)
 
-    Dir["#{curr_dir}/../../db/migrations/#{name}"].each do |source|
+    Dir["#{curr_dir}/../../db/migrate/#{name}"].each do |source|
 
       # Use File.basename to remove the gem's path info so we can
       # use just the filename to copy relative to the user.
-      destination = "db/migrations/#{File.basename(source)}"
+      destination = "db/migrate/#{File.basename(source)}"
 
       FileUtils.rm(destination) if options[:force] && File.exist?(destination)
       if File.exist?(destination)
