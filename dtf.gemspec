@@ -43,5 +43,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "pry-buffers"
   gem.add_development_dependency "pry-stack_explorer"
   gem.add_development_dependency "pry-exception_explorer"
+  gem.add_development_dependency "fabrication"
 
 end
