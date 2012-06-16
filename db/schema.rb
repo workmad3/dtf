@@ -6,15 +6,14 @@
 # Note that this schema.rb definition is the authoritative source for your
 # database schema. If you need to create the application database on another
 # system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more
-# migrations you'll amass, the slower it'll run and the greater likelihood for
-# issues).
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20120616203436) do
 
-  create_table "analysis_suites", :force => true do |t|
+  create_table "analysis_cases", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "verification_suite_id"
