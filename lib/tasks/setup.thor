@@ -1,4 +1,4 @@
-class Setup < Thor
+class DtfSetup < Thor
 
   desc "install", "installs database schemas and control scripts"
   method_options :force => :boolean
