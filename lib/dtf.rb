@@ -1,5 +1,5 @@
 require "dtf/version"
 
 module Dtf
-  # Your code goes here...
+  load "#{File.join(File.dirname(__FILE__), "/config/environment.rb")}"
 end
