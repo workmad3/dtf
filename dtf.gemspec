@@ -20,7 +20,12 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "thor"
   gem.add_dependency "rake"
+  gem.add_dependency "activerecord"
+  gem.add_dependency "activemodel"
+  gem.add_dependency "activesupport"
   gem.add_dependency "sqlite3"
+  gem.add_dependency "json"
+  gem.add_dependency "json_pure"
   gem.add_dependency "standalone_migrations"
 
   gem.add_development_dependency "turnip"
