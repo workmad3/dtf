@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "User" do
 
-  it "should create a user" do
+  it "should be created/fabricated" do
     user = Fabricate(:user)
     user.should be_a(User)
   end
