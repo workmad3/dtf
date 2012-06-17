@@ -1,0 +1,13 @@
+rvm:
+  - 1.9.3
+before_script: rake db:migrate
+script: rspec spec --format doc
+language: ruby
+notifications:
+  irc:
+    channels:
+      - "irc.freenode.org#dtf-gems"
+  email:
+    recipients:
+      - me@deryldoucette.com
+    on_failure: change
