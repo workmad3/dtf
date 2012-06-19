@@ -12,3 +12,5 @@ end
 Dir.glob("spec/steps/**/*steps.rb") do |f|
   load f, true
 end
+
+RSpec.configure { |c| c.include ModelSteps }
