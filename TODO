@@ -1,0 +1,23 @@
+Write control/management scripts
+Ex: writing the scripts to add users, and create/delete
+verification suites/analysis cases from the commandline.
+
+Esure that the thor tasks for copying the dtf migrations and db config into a 
+project. which work now, get tests written to show they do.
+
+Properly document the params for DTF's dtf-* commands, as well as integration 
+docs for sub-gems
+
+Then its on to dtf-session to rewrite it so that when it includes dtf, the thor 
+tasks are registered and usable, and to redo the code to use the new schema
+
+Then on to dtf-rvm gem, dtf-sm gem, and dtf-shell 
+
+Those 3 gems would provide a full suite for testing ruby code, rvm, shell code and
+sm directly, when coupled with dtf master gem. Then we can build other framework
+gems.
+
+dtf-session becomes a dependency of dtf-shell which will be written to support 
+specific Shells
+
+dtf-rvm will have a dependency on both dtf-session, and rvm gems
