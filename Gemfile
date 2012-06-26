@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Specify your gem's dependencies in dtf.gemspec
-group :development do
+group :development, :test do
   gem "pry", :git => "https://github.com/pry/pry.git"
   gem "pry-doc", :git => "https://github.com/pry/pry-doc.git"
   gem "method_source", :git => "https://github.com/banister/method_source.git"
