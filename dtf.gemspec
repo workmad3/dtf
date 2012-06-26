@@ -30,19 +30,6 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "turnip"
   gem.add_development_dependency "rspec", [">=2.10.0"]
-  gem.add_development_dependency "pry"
-  gem.add_development_dependency "pry-doc"
-  gem.add_development_dependency "pry-nav"
-  gem.add_development_dependency "pry-git"
-  gem.add_development_dependency "pry-coolline"
-  gem.add_development_dependency "pryable"
-  gem.add_development_dependency "pry-developer_tools"
-  gem.add_development_dependency "pry-syntax-hacks"
-  gem.add_development_dependency "pry-editline"
-  gem.add_development_dependency "pry-highlight"
-  gem.add_development_dependency "pry-buffers"
-  gem.add_development_dependency "pry-stack_explorer"
-  gem.add_development_dependency "pry-exception_explorer"
   gem.add_development_dependency "fabrication"
   gem.add_development_dependency "vcr"
 
