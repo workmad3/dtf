@@ -1,4 +1,5 @@
 module ModelSteps
+
   step "a user" do
     @user = Fabricate(:user)
   end
@@ -15,8 +16,17 @@ module ModelSteps
     @ct = Fabricate(:case_test)
   end
 
-  step "I should see user ownership" do
-    @user.verification_suites.build
-    @user.verification_suites.nil?
+  step "I should see user ownership chain via :association" do |association|
+    @user.send(association).build
+    @user.send(association).nil?
+  end
+
+end
+
+placeholder :association do
+  match /^\w+/ do |assoc_name|
+    assoc_name.gsub(' ', '_')
   end
 end
+
+

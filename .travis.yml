@@ -1,9 +1,9 @@
 rvm:
   - 1.9.3
 before_script:
-  - thor dtf_setup:config
-  - rake db:migrate
-script: rspec spec --format doc
+  - bundle exec thor dtf_setup:config
+  - bundle exec rake db:migrate
+script: bundle exec rspec spec --format doc
 language: ruby
 notifications:
   irc:

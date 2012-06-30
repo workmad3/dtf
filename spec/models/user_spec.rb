@@ -1,8 +1,12 @@
 require 'spec_helper'
+require 'benchmark'
 
 describe "User" do
 
-  let(:user) { Fabricate(:user) }
+  puts "User Benchmark"
+  puts Benchmark.measure { let (:user) { Fabricate(:user) } }
+
+  let (:user) { Fabricate(:user) }
 
   it "should be created/fabricated" do
     user.should be_a(User)

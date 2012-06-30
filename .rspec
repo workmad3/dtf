@@ -1,1 +1,1 @@
--r turnip/rspec
+-r turnip/rspec --color
