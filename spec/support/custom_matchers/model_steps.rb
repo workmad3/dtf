@@ -24,7 +24,7 @@ module ModelSteps
 end
 
 placeholder :association do
-  match /^\w+/ do |assoc_name|
+  match /(\w+(?: \w+)*)/ do |assoc_name|
     assoc_name.gsub(' ', '_')
   end
 end
