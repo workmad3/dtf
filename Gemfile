@@ -17,6 +17,7 @@ group :development, :test do
   gem "pry-stack_explorer"
   gem "pry-exception_explorer"
   gem "jist"
+  gem "pry-theme"
 end
 
 gemspec
