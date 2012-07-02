@@ -37,14 +37,10 @@ ActiveRecord::Schema.define(:version => 20120616203436) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "users_verification_suites", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "verification_suite_id"
-  end
-
   create_table "verification_suites", :force => true do |t|
     t.string   "name"
     t.text     "description"
+    t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
