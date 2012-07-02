@@ -7,7 +7,6 @@ group :development, :test do
   gem "method_source", :git => "https://github.com/banister/method_source.git"
   gem "pry-nav"
   gem "pry-git"
-  gem "pry-coolline"
   gem "pryable"
   gem "pry-developer_tools"
   gem "pry-syntax-hacks"
