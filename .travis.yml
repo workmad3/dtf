@@ -3,6 +3,7 @@ rvm:
 before_script:
   - bundle exec thor dtf_setup:config
   - bundle exec rake db:migrate
+  - bundle exec gem list
 script: bundle exec rspec spec --format doc
 language: ruby
 notifications:
