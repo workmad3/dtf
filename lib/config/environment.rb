@@ -6,6 +6,7 @@ require 'multi_json'
 require 'sqlite3'
 require 'yaml'
 require 'logger'
+require 'thor'
 
 # Set the ENV which defaults to 'development'. Also affects which database to create and connect to.
 ENV['RAILS_ENV'] ||= 'development'
