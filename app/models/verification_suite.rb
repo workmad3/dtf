@@ -3,7 +3,7 @@ class VerificationSuite < ActiveRecord::Base
   attr_accessible :name, :description
   validates_presence_of :name, :description
 
-  has_and_belongs_to_many :users
+  belongs_to :user
   has_many :analysis_cases
   has_many :case_tests, :through => :analysis_cases
 

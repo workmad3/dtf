@@ -5,5 +5,4 @@ class CaseTest < ActiveRecord::Base
 
   belongs_to  :analysis_case
   has_one     :verification_suite, :through => :analysis_case
-  has_many    :users, :through => :verification_suite
 end
