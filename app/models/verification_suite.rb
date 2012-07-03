@@ -3,9 +3,9 @@ class VerificationSuite < ActiveRecord::Base
   attr_accessible :name, :description
   validates_presence_of :name, :description
 
-  belongs_to :user
-  has_many :analysis_cases
-  has_many :case_tests, :through => :analysis_cases
+  belongs_to :user, :autosave => :true
+  has_many :analysis_cases, :dependent => :destroy
+  has_many :case_tests, :through => :analysis_cases, :dependent => :destroy
 
   # ASSOCIATIONS BREAKDOWN
   # ----------------------
