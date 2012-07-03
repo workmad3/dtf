@@ -1,3 +1,5 @@
+Make sure to change ENV['RAILS_ENV'] to default to "production" upon release
+
 Write control/management scripts
 Ex: writing the scripts to add users, and create/delete
 verification suites/analysis cases from the commandline.
