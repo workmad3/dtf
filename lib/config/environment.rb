@@ -8,9 +8,10 @@ require 'yaml'
 require 'logger'
 require 'thor'
 
-# Set the ENV to default to 'production'. Affects which database to use.
-# TODO: Change this to 'production' upon gem release and remove this comment
-ENV['RAILS_ENV'] ||= 'development'
+# NOTE: Set RAILS_ENV to 'production' for ActiveRecord. Affects the database to use.
+# Change this to 'development' while working on the gem itself, or set it in the
+# environment prefixed to commands, in order to gain access to testing gems.
+ENV['RAILS_ENV'] ||= 'production'
 
 # This section is for development and testing. Load your testing framework(s) require's here
 case ENV['RAILS_ENV']
