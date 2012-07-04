@@ -19,3 +19,5 @@ test/version_tmp
 tmp
 .idea
 pmip
+/db/config.yml
+/db/*.sqlite3
