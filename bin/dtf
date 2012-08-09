@@ -11,3 +11,18 @@
 # Accessing the help system
 # Ex: dtf help create_user
 
+require 'dtf'
+require 'optparse'
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: dtf <cmd> [options]"
+  
+  opts.on("-h", "--help",
+          "Show this message") do |h|
+    options[:help] = h
+    puts opts
+  end
+
+end.parse!
