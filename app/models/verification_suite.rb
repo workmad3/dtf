@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 class VerificationSuite < ActiveRecord::Base
 
   attr_accessible :name, :description

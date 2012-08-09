@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 source 'https://rubygems.org'
 
 # Specify your gem's dependencies in dtf.gemspec
@@ -18,6 +20,7 @@ group :development, :test do
   gem "pry-exception_explorer"
   gem "jist"
   gem "pry-theme"
+  gem 'simplecov'
 end
 
 gemspec

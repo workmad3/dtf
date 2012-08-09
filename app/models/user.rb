@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 class User < ActiveRecord::Base
 
   attr_accessible :full_name, :email_address, :user_name

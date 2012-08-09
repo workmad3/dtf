@@ -1,7 +1,17 @@
-class DtfSetup < Thor
+# -*- coding: UTF-8 -*-
 
-  desc "install", "installs database schemas and control scripts"
-  method_options :force => :boolean
+class DtfSetup < Thor::Group
+  include Thor::Actions
+
+
+  # Have user define where to install to
+  argument :location
+
+
+  def self.source_root
+    File.dirname[__FILE__]
+  end
+
   def install(name= "*")
     puts "installing db schemas and control scripts"
 

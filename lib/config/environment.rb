@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 # Application wide requirements
 require 'active_record'
 require 'active_model'
@@ -11,7 +13,7 @@ require 'thor'
 # NOTE: Set RAILS_ENV to 'production' for ActiveRecord. Affects the database to use.
 # Change this to 'development' while working on the gem itself, or set it in the
 # environment prefixed to commands, in order to gain access to testing gems.
-ENV['RAILS_ENV'] ||= 'production'
+ENV['RAILS_ENV'] ||= 'development'
 
 # This section is for development and testing. Load your testing framework(s) require's here
 case ENV['RAILS_ENV']

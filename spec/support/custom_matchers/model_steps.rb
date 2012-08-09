@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 module ModelSteps
 
   step "a user" do

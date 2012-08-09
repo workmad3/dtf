@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 class CaseTest < ActiveRecord::Base
 
   attr_accessible :description, :cmd
