@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+#
+# This is the master script to be used to manage the various Verification Suites,
+# Analysis Cases, and Case Tests
+#
+# Ex: dtf create_user -u|--user @user_name -n|--name "John Public" -e|--email
+# "j@public.com"
+#
+# -u -n and -e are _required_ parameters
+#
+# Accessing the help system
+# Ex: dtf help create_user
+
