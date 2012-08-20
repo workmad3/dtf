@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.description       = %q{DTF is a modular testing framework skeleton. This is the control gem which contains the Suite's db schema(s) and control/management scripts.}
   gem.summary           = %q{DTF is a modular testing framework. This is the control gem.}
   gem.homepage          = "https://github.com/dtf-gems/dtf"
-
+  gem.license           = 'MIT'
   gem.platform          = Gem::Platform::RUBY
   gem.files             = `git ls-files`.split($\)
   gem.executables       = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
