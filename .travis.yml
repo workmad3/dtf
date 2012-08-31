@@ -1,8 +1,8 @@
 rvm:
   - 1.9.3
+before_install:
+  - gem update bundler
 before_script:
-  - RAILS_ENV='development' gem update bundler
-  - RAILS_ENV='development' gem cleanup
   - RAILS_ENV='development' bundle exec thor dtf_setup:config
   - RAILS_ENV='development' bundle exec rake db:migrate
   - RAILS_ENV='development' bundle exec gem list
