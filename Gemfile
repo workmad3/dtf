@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
-
 source 'https://rubygems.org'
 ruby "1.9.3"
+
 # Specify your gem's dependencies in dtf.gemspec
 group :development, :test do
   #gem "pry", :git => "https://github.com/pry/pry.git"
