@@ -1,30 +1,23 @@
 #!/usr/bin/env ruby
+# encoding: UTF-8
+# (c) Copyright 2012 David Deryl Downey / Deryl R. Doucette. All Rights Reserved.
 #
-# This is the master script to be used to manage the various Verification Suites,
-# Analysis Cases, and Case Tests
-#
-# Ex: dtf create_user -u|--user @user_name -n|--name "John Public" -e|--email
-# "j@public.com"
-#
-# -u -n and -e are _required_ parameters
-#
-# Accessing the help system
-# Ex: dtf help create_user
+# This is the master script for managing Users and Verification Suites
 
 require 'dtf'
 require 'trollop' # Used to implement help system
 
-SUB_COMMANDS = %w(create_user create_vs delete_user delete_vs)
+# -- START HELP SYSTEM
+SUB_COMMANDS = %w(create_user delete_user create_vs delete_vs)
 
 # Global options default to '--version|-v' and '--help|-h'
 global_opts = Trollop::options do
-  version "DTF v#{Dtf::VERSION}
-Copyright (c) 2012, David Deryl Downey / Deryl R. Doucette.
-This is free software; see the LICENSE file for copying conditions.
-There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
-
+  version "DTF v#{Dtf::VERSION}"
   banner <<-EOS
   #{version}
+  (c) Copyright 2012 David Deryl Downey / Deryl R. Doucette. All Rights Reserved.
+  This is free software; see the LICENSE file for copying conditions.
+  There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
   
   Usage:
         dtf -v|--version -h|--help [[sub_cmds <options>] -h|--help]
@@ -37,8 +30,8 @@ EOS
 end
 
 # Sub-commands go here
-cmd = ARGV.shift
-cmd_opts = case cmd
+@cmd = ARGV.shift
+@cmd_opts = case @cmd
   when "create_user"
     Trollop::options do
       opt(:user, desc="Username for new TF user - REQUIRED", opts={:type => :string, :short => '-u'})
@@ -61,7 +54,58 @@ cmd_opts = case cmd
       opt(:id, desc="ID of VS to be deleted - REQUIRED", opts={:type => :int, :short => '-i'})
     end
   when nil
-    Trollop::die "No command specified"
+    Trollop::die "No command specified! Please specify an applicable command"
   else
-    Trollop::die "Unknown sub-command: #{cmd.inspect}"
+    Trollop::die "Unknown DTF sub-command: #{cmd.inspect}"
+  end
+# -- END HELP SYSTEM
+
+
+# Reusable error response method
+def raise_error
+  raise ArgumentError
+  rescue
+    puts "ERROR! #{@cmd} did not receive all required options."
+    puts "See 'dtf #{@cmd} -h' for help with this sub-command"
+
+    # Set non-zero exit value on error, for scripting use.
+    exit 255
+end
+
+
+# -- START MAIN APPLICATION
+
+# Ensure we have *all* required options for each possible sub_cmd
+case @cmd
+  when "create_user"
+    if [:user_given, :name_given, :email_given].all? { |sym| @cmd_opts.key?(sym) } then
+      puts "Creating user \'#{@cmd_opts[:user]}\' for \'#{@cmd_opts[:name]}\'"
+    else
+      raise_error
+    end
+  when "delete_user"
+    if [:user_given, :delete_all].all? { |sym| @cmd_opts.key?(sym) } then
+      # NOTE: :delete_all is 'true' by default. passing '--no-delete-all' sets it to false,
+      # and adds the :delete_all_given key to the @cmd_opts hash, set to true.
+      # This means NOT to delete all VSs associated with this user. We delete them by default.
+      if @cmd_opts[:delete_all] == false && @cmd_opts[:delete_all_given] == true
+        puts "#{@cmd} called with '--no-delete-all' set! NOT deleting all owned VSs"
+      else
+        puts "#{@cmd} called with '--delete-all' set or on by default! Deleting all VSs owned by #{@cmd_opts[:user]}"
+      end
+    else
+      raise_error
+    end
+  when "create_vs"
+    if [:user_given, :name_given].all? { |sym| @cmd_opts.key?(sym) } then
+      puts "Creating and associating VS named \'#{@cmd_opts[:name]}\' to user \'#{@cmd_opts[:user]}\'"
+    else
+      raise_error
+    end
+  when "delete_vs"
+    if [:user_given, :id_given].all? { |sym| @cmd_opts.key?(sym) } then
+      puts "#{@cmd} called! Deleting #{@cmd_opts[:user]}\'s VS with ID \'#{@cmd_opts[:id]}\'"
+    else
+      raise_error
+    end
   end
