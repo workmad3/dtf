@@ -1,1 +1,1 @@
--r turnip/rspec --color
+-r turnip/rspec --color --format doc
