@@ -1,12 +1,8 @@
 # -*- coding: UTF-8 -*-
 
 require 'spec_helper'
-require 'benchmark'
 
 describe "Verification Suite" do
-
-  puts "Verification Suite Benchmark"
-  puts Benchmark.measure { let (:verification_suite) { Fabricate(:verification_suite) } }
 
   let(:verification_suite) { Fabricate(:verification_suite) }
 

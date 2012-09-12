@@ -4,10 +4,6 @@ require 'spec_helper'
 
 describe "Analysis Case" do
 
-  puts "Analysis Case Benchmark"
-  puts Benchmark.measure { let (:analysis_case) { Fabricate(:analysis_case) } }
-
-
   let(:analysis_case) { Fabricate(:analysis_case) }
 
   it "should be created/fabricated" do
