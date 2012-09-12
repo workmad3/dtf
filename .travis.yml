@@ -14,5 +14,5 @@ notifications:
       - "irc.freenode.org#dtf-gems"
   email:
     recipients:
-      - me@deryldoucette.com
+      - me@daviddwdowney.com
     on_failure: change
