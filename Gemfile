@@ -21,6 +21,7 @@ group :development, :test do
   gem "jist"
   gem "pry-theme"
   gem 'simplecov'
+  gem 'database_cleaner'
 end
 
 gemspec
