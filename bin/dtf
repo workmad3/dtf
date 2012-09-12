@@ -44,8 +44,13 @@ case @cmd
       # This means NOT to delete all VSs associated with this user. We delete them by default.
       if @cmd_opts[:delete_all] == false && @cmd_opts[:delete_all_given] == true
         puts "#{@cmd} called with '--no-delete-all' set! NOT deleting all owned VSs!"
-        puts "Please be aware that this will leave orphaned VSs in the system to be cleaned later."
-        user = User.where(user_name: @cmd_opts[:user_name])
+        puts "Reassigning VSs to Library. New owner will be \'Library Owner\'"
+        user = User.find_by_user_name(@cmd_opts[:user_name])
+        lib_owner = User.find_by_user_name("library_owner")
+        user.verification_suites.all.each do |vs|
+          vs.user_id = lib_owner.id
+          vs.save
+        end
         User.delete(user)
       else
         puts "#{@cmd} called with '--delete-all' set or on by default! Deleting all VSs owned by #{@cmd_opts[:user_name]}"
