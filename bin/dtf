@@ -18,9 +18,9 @@ require 'dtf/dtf_error_system'
 case @cmd
   when "create_user"
     if [:user_name_given, :full_name_given, :email_address_given].all? { |sym| @cmd_opts.key?(sym) } then
-      @user = User.create(user_name: @cmd_opts[:user_name],
+      @user = User.where(user_name: @cmd_opts[:user_name],
                           full_name: @cmd_opts[:full_name],
-                          email_address: @cmd_opts[:email_address])
+                          email_address: @cmd_opts[:email_address]).first_or_create
 
       # Check to make sure user was actually saved to the db
       if @user.persisted? then
