@@ -12,7 +12,7 @@ describe "CaseTest" do
       case_test.should be_a(CaseTest)      
     end
     
-    it "should be invalid without being assigned to a verification suite" do    
+    it "should be invalid without being assigned to a analysis case" do
       case_test.should_not be_valid
       case_test[:analysis_case_id].should be_nil
       case_test.new_record?.should be_true
