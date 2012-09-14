@@ -4,14 +4,58 @@ require 'spec_helper'
 
 describe "User" do
 
-  let (:user) { Fabricate(:user) }
+  context "when instantiated" do
 
-  it "should be created/fabricated" do
-    user.should be_a(User)
-  end
+    let(:user) { User.new }
+    
+    it "should be invalid without a user_name" do    
+      #user = User.new
+      user.should be_a(User)
+      user.save
+      user.errors.messages[:user_name].should eq(["can't be blank"])
+      user.should_not be_valid
+      user.new_record?.should be_true
+    end  
+  
+    it "should be invalid without an email_address" do    
+      user = User.new
+      user.should be_a(User)
+      user.save
+      user.errors.messages[:email_address].should eq(["can't be blank"])
+      user.should_not be_valid
+      user.new_record?.should be_true
+    end
+    
+    it "should be invalid without a full_name" do    
+      user = User.new
+      user.should be_a(User)
+      user.save
+      user.errors.messages[:full_name].should eq(["can't be blank"])
+      user.should_not be_valid
+      user.new_record?.should be_true
+    end
 
-  it "should be persisted" do
-    user.save
-    user.persisted?
+    it "should not be saved" do
+      user.new_record?.should be_true
+      user.persisted?.should_not be_true
+    end
+
+  end  
+  
+  context "when created" do
+    let(:user) { Fabricate(:user)}
+    
+    it "should have a user_name, full_name, and email_address" do    
+      user.user_name.should_not be_nil
+      user.full_name.should_not be_nil
+      user.email_address.should_not be_nil
+      user.errors.messages.should be_empty
+      user.should be_valid
+    end  
+  
+    it "should be saved" do
+      user.new_record?.should_not be_true
+      user.persisted?.should be_true
+    end
   end
 end

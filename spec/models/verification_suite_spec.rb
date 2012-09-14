@@ -2,16 +2,57 @@
 
 require 'spec_helper'
 
-describe "Verification Suite" do
+describe "VerificationSuite" do
 
-  let(:verification_suite) { Fabricate(:verification_suite) }
+  context "when instantiated" do
 
-  it "should be created/fabricated" do
-    verification_suite.should be_a(VerificationSuite)
-  end
+    let(:verification_suite) { VerificationSuite.new }
+    
+    it "should be invalid without being assigned to a user" do    
+      verification_suite.save
+      verification_suite.errors.messages[:user_id].should eq(["can't be blank"])
+      verification_suite.should_not be_valid
+      verification_suite.new_record?.should be_true
+    end  
+  
+    it "should be invalid without a name" do    
+      verification_suite.save
+      verification_suite.errors.messages[:name].should eq(["can't be blank"])
+      verification_suite.should_not be_valid
+      verification_suite.new_record?.should be_true
+    end
+    
+    it "should be invalid without a description" do    
+      verification_suite.save
+      verification_suite.errors.messages[:description].should eq(["can't be blank"])
+      verification_suite.should_not be_valid
+      verification_suite.new_record?.should be_true
+    end
 
-  it "should be persisted" do
-    verification_suite.save
-    verification_suite.persisted?
+    it "should not be saved" do
+      verification_suite.new_record?.should be_true
+      verification_suite.persisted?.should_not be_true
+    end
+
+  end  
+  
+  context "when created" do
+    user = Fabricate(:user)
+    verification_suite = user.verification_suites.create(name: "RSpec Test VS", description: "Bogus VS for RSpec")
+      
+    it "should be owned by a user" do    
+      verification_suite.user_id.should_not be_nil
+    end  
+
+    it "should have a name and description" do    
+      verification_suite.name.should_not be_nil
+      verification_suite.description.should_not be_nil
+    end  
+  
+    it "should be saved" do
+      verification_suite.should be_valid
+      verification_suite.new_record?.should_not be_true
+      verification_suite.persisted?.should be_true
+    end
   end
 end
