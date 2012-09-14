@@ -8,24 +8,25 @@ describe "VerificationSuite" do
 
     let(:verification_suite) { VerificationSuite.new }
     
-    it "should be invalid without being assigned to a user" do    
-      verification_suite.save
-      verification_suite[:user_id].should be_nil
+    it "should be the proper class" do
+      verification_suite.should be_a(VerificationSuite)      
+    end
+    
+    it "should be invalid without being assigned to a user" do
       verification_suite.should_not be_valid
+      verification_suite[:user_id].should be_nil
       verification_suite.new_record?.should be_true
     end  
   
     it "should be invalid without a name" do    
-      verification_suite.save
-      verification_suite.errors.messages[:name].should eq(["can't be blank"])
       verification_suite.should_not be_valid
+      verification_suite.errors.messages[:name].should eq(["can't be blank"])
       verification_suite.new_record?.should be_true
     end
     
     it "should be invalid without a description" do    
-      verification_suite.save
-      verification_suite.errors.messages[:description].should eq(["can't be blank"])
       verification_suite.should_not be_valid
+      verification_suite.errors.messages[:description].should eq(["can't be blank"])
       verification_suite.new_record?.should be_true
     end
 
@@ -40,13 +41,15 @@ describe "VerificationSuite" do
     user = Fabricate(:user)
     verification_suite = user.verification_suites.create(name: "RSpec Test VS", description: "Bogus VS for RSpec")
       
-    it "should be owned by a user" do    
+    it "should be owned by a user" do
       verification_suite.user_id.should_not be_nil
     end  
 
-    it "should have a name and description" do    
+    it "should have a valid name and description" do    
+      verification_suite.should be_valid
+      verification_suite.errors.messages.should be_empty
       verification_suite.name.should_not be_nil
-      verification_suite.description.should_not be_nil
+      verification_suite.description.should_not be_nil      
     end  
   
     it "should be saved" do
