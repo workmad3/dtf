@@ -11,7 +11,7 @@ global_opts = Trollop::options do
   (c) Copyright 2012 David Deryl Downey / Deryl R. Doucette. All Rights Reserved.
   This is free software; see the LICENSE file for copying conditions.
   There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  
+
   Usage:
         dtf -v|--version -h|--help [[sub_cmds <options>] -h|--help]
   
@@ -35,7 +35,7 @@ end
     Trollop::options do
       opt(:user_name, desc="TF user to associate this VS with - REQUIRED", opts={:type => :string, :short => '-u'})
       opt(:name, desc="Name for new VS - REQUIRED", opts={:type => :string, :short => '-n'})
-      opt(:description, desc="Description of VS's intended use - OPTIONAL", opts={:type => :string, :short => '-d', :default => ''}) 
+      opt(:description, desc="Description of VS's intended use - OPTIONAL", opts={:type => :string, :short => '-d', :default => ''})
     end
   when "delete_user"
     Trollop::options do

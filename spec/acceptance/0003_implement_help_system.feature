@@ -1,7 +1,7 @@
 Feature: DTF Help System is correctly implemented
   Background:
-    Given I have dtf installed  
-    
+    Given I have dtf installed
+
     Scenario Outline: Sub-command specific help is received
 		Given I request help for sub-command <sub_cmd>
 		Then I should see <help_response> in the response

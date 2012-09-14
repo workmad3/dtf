@@ -1,7 +1,6 @@
 step "I have dtf installed" do
-  if Dtf::VERSION.empty?    
-    puts "Dtf gem not loaded"
-    exit 1      
+  if Dtf::VERSION.empty?
+    fail("DTF gem not loaded")
   end
 end
 
