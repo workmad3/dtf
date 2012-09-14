@@ -10,7 +10,7 @@ describe "VerificationSuite" do
     
     it "should be invalid without being assigned to a user" do    
       verification_suite.save
-      verification_suite.errors.messages[:user_id].should be_nil
+      verification_suite[:user_id].should be_nil
       verification_suite.should_not be_valid
       verification_suite.new_record?.should be_true
     end  
