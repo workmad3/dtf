@@ -2,10 +2,10 @@
 
 class DtfSetup < Thor
 
-  desc "install", "installs database schemas and control scripts"
+  desc "install", "Installs database migrations, the main schema, and configuration files"
   method_options :force => :boolean
   def install(name= "*")
-    puts "installing db schemas and control scripts"
+    puts "Installing db migrations, main schema, and config files"
 
     # The gem is installed elsewhere so the copy path needs to be
     # relative to the gem, not the user.
@@ -27,7 +27,7 @@ class DtfSetup < Thor
     end
   end
 
-  desc "config [NAME]", "copy db configuration file(s)"
+  desc "config [NAME]", "Copy db configuration file(s)"
   method_options :force => :boolean
   def config(name = "*")
 
