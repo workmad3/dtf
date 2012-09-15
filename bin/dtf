@@ -18,15 +18,15 @@ require 'dtf/error_system'
 # Ensure we have *all* required options for each possible sub_cmd
 case @cmd
   when "create_user"
-    Dtf::DtfCommands.create_user(@cmd_opts)
+    Dtf::Commands.create_user(@cmd_opts)
   
   when "delete_user"
-    Dtf::DtfCommands.delete_user(@cmd, @cmd_opts)
+    Dtf::Commands.delete_user(@cmd, @cmd_opts)
   
   when "create_vs"
-    Dtf::DtfCommands.create_vs(@cmd_opts)
+    Dtf::Commands.create_vs(@cmd_opts)
   
   when "delete_vs"
-    Dtf::DtfCommands.delete_vs(@cmd, @cmd_opts)
+    Dtf::Commands.delete_vs(@cmd, @cmd_opts)
 
 end

@@ -5,7 +5,7 @@ require "dtf/version"
 module Dtf
   load "#{File.join(File.dirname(__FILE__), "/config/environment.rb")}"
 
-  class DtfCommands
+  class Commands
     def self.create_user(cmd_opts)
       if [:user_name_given, :full_name_given, :email_address_given].all? { |sym| cmd_opts.key?(sym) } then
         user = User.where(user_name:     cmd_opts[:user_name],
