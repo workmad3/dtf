@@ -5,6 +5,7 @@
 # This is the master script for managing Users and Verification Suites
 
 require 'dtf'
+require 'thor'
 
 # -- LOAD HELP SYSTEM
 require 'dtf/dtf_help_system'
