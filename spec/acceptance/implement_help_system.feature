@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 Feature: DTF Help System is correctly implemented
   Background:
     Given I have dtf installed

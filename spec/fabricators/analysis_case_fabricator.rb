@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# encoding: UTF-8
 
 Fabricator(:analysis_case) do
   name "DTF Analysis Case"

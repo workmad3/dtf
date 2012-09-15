@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 Feature: Verification of User associations
   Background:
     Given a User

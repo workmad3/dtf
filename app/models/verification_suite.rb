@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# encoding: UTF-8
 
 class VerificationSuite < ActiveRecord::Base
 

@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 step "I have dtf installed" do
   if Dtf::VERSION.empty?
     fail("DTF gem not loaded")

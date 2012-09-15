@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # Reusable error response method
 def raise_error
   raise ArgumentError

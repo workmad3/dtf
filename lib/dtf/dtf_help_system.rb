@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # DTF Help System
 require 'trollop' # Used to implement help system
 

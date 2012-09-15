@@ -1,6 +1,4 @@
-# -*- coding: UTF-8 -*-
-
-# num = rand(5..10_000_000).to_i.to_s
+# encoding: UTF-8
 
 Fabricator(:user) do
   full_name { sequence(:num, 5 ) { |num| "John Q Public #{num}" } }

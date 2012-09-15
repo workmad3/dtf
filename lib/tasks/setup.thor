@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class DtfSetup < Thor
 
   desc "install", "installs database schemas and control scripts"
