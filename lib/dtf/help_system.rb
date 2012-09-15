@@ -51,5 +51,5 @@ end
   when nil
     Trollop::die "No command specified! Please specify an applicable command"
   else
-    Trollop::die "Unknown DTF sub-command: #{cmd.inspect}"
+    Trollop::die "Unknown DTF sub-command: #{@cmd.inspect}"
   end
