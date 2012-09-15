@@ -29,4 +29,7 @@ case @cmd
   when "delete_vs"
     Dtf::Commands.delete_vs(@cmd, @cmd_opts)
 
+  else
+    $stderr.puts "Unknown DTF sub-command: #{cmd.inspect}"
+    abort()
 end
