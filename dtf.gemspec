@@ -2,8 +2,8 @@
 require File.expand_path('../lib/dtf/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors           = ["Deryl R. Doucette"]
-  gem.email             = ["me@deryldoucette.com"]
+  gem.authors           = ["David Deryl Downey"]
+  gem.email             = ["me@daviddwdowney.com"]
   gem.description       = %q{DTF is a modular testing framework skeleton. This is the control gem which contains the Suite's db schema(s) and control/management scripts.}
   gem.summary           = %q{DTF is a modular testing framework. This is the control gem.}
   gem.homepage          = "https://github.com/dtf-gems/dtf"
