@@ -8,10 +8,10 @@ require 'dtf'
 require 'thor'
 
 # -- LOAD HELP SYSTEM
-require 'dtf/dtf_help_system'
+require 'dtf/help_system'
 
 # -- LOAD ERROR SYSTEM
-require 'dtf/dtf_error_system'
+require 'dtf/error_system'
 
 
 # -- START MAIN APPLICATION
