@@ -6,6 +6,27 @@ module Dtf
   load "#{File.join(File.dirname(__FILE__), "/config/environment.rb")}"
 
   class Commands
+    
+    def process(cmd, cmd_opts)
+      case cmd
+        when "create_user"
+          create_user(cmd_opts)
+
+        when "delete_user"
+          delete_user(cmd, cmd_opts)
+
+        when "create_vs"
+          create_vs(cmd_opts)
+
+        when "delete_vs"
+          delete_vs(cmd, cmd_opts)
+
+        else
+          $stderr.puts "Unknown DTF sub-command: #{cmd.inspect}"
+          abort()
+      end
+    end
+    
     def self.create_user(cmd_opts)
       if [:user_name_given, :full_name_given, :email_address_given].all? { |sym| cmd_opts.key?(sym) } then
         user = User.where(user_name:     cmd_opts[:user_name],

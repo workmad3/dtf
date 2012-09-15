@@ -13,23 +13,4 @@ require 'dtf/help_system'
 # -- LOAD ERROR SYSTEM
 require 'dtf/error_system'
 
-
-# -- START MAIN APPLICATION
-# Ensure we have *all* required options for each possible sub_cmd
-case @cmd
-  when "create_user"
-    Dtf::Commands.create_user(@cmd_opts)
-  
-  when "delete_user"
-    Dtf::Commands.delete_user(@cmd, @cmd_opts)
-  
-  when "create_vs"
-    Dtf::Commands.create_vs(@cmd_opts)
-  
-  when "delete_vs"
-    Dtf::Commands.delete_vs(@cmd, @cmd_opts)
-
-  else
-    $stderr.puts "Unknown DTF sub-command: #{cmd.inspect}"
-    abort()
-end
+Dtf::Commands.process(@cmd, @cmd_opts)
