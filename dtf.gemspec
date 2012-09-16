@@ -4,8 +4,8 @@ require File.expand_path('../lib/dtf/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors           = ["David Deryl Downey"]
   gem.email             = ["me@daviddwdowney.com"]
-  gem.description       = %q{DTF is a modular testing framework skeleton. This is the control gem which contains the Suite's db schema(s) and control/management scripts.}
-  gem.summary           = %q{DTF is a modular testing framework. This is the control gem.}
+  gem.description       = %q{DTF is a modular testing framework skeleton. This is the control gem containing the db schema(s) and command-line script.}
+  gem.summary           = %q{DTF is a modular testing framework. This is the master gem for the DTF framework.}
   gem.homepage          = "https://github.com/dtf-gems/dtf"
   gem.license           = 'MIT'
   gem.platform          = Gem::Platform::RUBY
