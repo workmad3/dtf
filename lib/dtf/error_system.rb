@@ -1,16 +1,16 @@
 # encoding: UTF-8
 # Reusable error response method
-def raise_error
+def raise_error(cmd)
   raise ArgumentError
 rescue
-  $stderr.puts "ERROR! #{@cmd} did not receive all required options."
-  $stderr.puts "See 'dtf #{@cmd} -h' for help with this sub-command"
+  $stderr.puts "ERROR! #{cmd} did not receive all required options."
+  $stderr.puts "See 'dtf #{cmd} -h' for help with this sub-command"
 
   # Set non-zero exit value on error, for scripting use.
   abort()
 end
 
-def display_errors()
+def display_errors(cmd)
   # TODO: Refactor error display to take sub-command as an arg
   # and display obj.errors.messages.each properly for each arg type.
 end

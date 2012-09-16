@@ -94,18 +94,6 @@
   
 </p>
 
-  <h2>Constant Summary</h2>
-  
-    <dl class="constants">
-      
-        <dt id="SUB_COMMANDS-constant" class="">SUB_COMMANDS =
-          
-        </dt>
-        <dd><pre class="code"><span class='qwords_beg'>%w(</span><span class='tstring_content'>create_user</span><span class='words_sep'> </span><span class='tstring_content'>delete_user</span><span class='words_sep'> </span><span class='tstring_content'>create_vs</span><span class='words_sep'> </span><span class='tstring_content'>delete_vs</span><span class='words_sep'>)</span></pre></dd>
-      
-    </dl>
-  
-
 
 
 
@@ -123,7 +111,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#display_errors-instance_method" title="#display_errors (instance method)">- (Object) <strong>display_errors</strong> </a>
+      <a href="#display_errors-instance_method" title="#display_errors (instance method)">- (Object) <strong>display_errors</strong>(cmd) </a>
     
 
     
@@ -145,7 +133,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#raise_error-instance_method" title="#raise_error (instance method)">- (Object) <strong>raise_error</strong> </a>
+      <a href="#raise_error-instance_method" title="#raise_error (instance method)">- (Object) <strong>raise_error</strong>(cmd) </a>
     
 
     
@@ -178,7 +166,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="display_errors-instance_method">
   
-    - (<tt>Object</tt>) <strong>display_errors</strong> 
+    - (<tt>Object</tt>) <strong>display_errors</strong>(cmd) 
   
 
   
@@ -196,9 +184,9 @@
 16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dtf/dtf_error_system.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/dtf/error_system.rb', line 13</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_display_errors'>display_errors</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_display_errors'>display_errors</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
   <span class='comment'># TODO: Refactor error display to take sub-command as an arg
 </span>  <span class='comment'># and display obj.errors.messages.each properly for each arg type.
 </span><span class='kw'>end</span></pre>
@@ -210,7 +198,7 @@
       <div class="method_details ">
   <h3 class="signature " id="raise_error-instance_method">
   
-    - (<tt>Object</tt>) <strong>raise_error</strong> 
+    - (<tt>Object</tt>) <strong>raise_error</strong>(cmd) 
   
 
   
@@ -244,13 +232,13 @@
 11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dtf/dtf_error_system.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/dtf/error_system.rb', line 3</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_raise_error'>raise_error</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_raise_error'>raise_error</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span>
 <span class='kw'>rescue</span>
-  <span class='gvar'>$stderr</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ERROR! </span><span class='embexpr_beg'>#{</span><span class='ivar'>@cmd</span><span class='rbrace'>}</span><span class='tstring_content'> did not receive all required options.</span><span class='tstring_end'>&quot;</span></span>
-  <span class='gvar'>$stderr</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>See 'dtf </span><span class='embexpr_beg'>#{</span><span class='ivar'>@cmd</span><span class='rbrace'>}</span><span class='tstring_content'> -h' for help with this sub-command</span><span class='tstring_end'>&quot;</span></span>
+  <span class='gvar'>$stderr</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ERROR! </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rbrace'>}</span><span class='tstring_content'> did not receive all required options.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='gvar'>$stderr</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>See 'dtf </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rbrace'>}</span><span class='tstring_content'> -h' for help with this sub-command</span><span class='tstring_end'>&quot;</span></span>
 
   <span class='comment'># Set non-zero exit value on error, for scripting use.
 </span>  <span class='id identifier rubyid_abort'>abort</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -265,7 +253,7 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Sep 14 22:41:21 2012 by
+  Generated on Sun Sep 16 12:04:53 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>
