@@ -5,7 +5,7 @@ require "dtf/version"
 module Dtf
   load "#{File.join(File.dirname(__FILE__), "/config/environment.rb")}"
 
-  class Commands
+  class Command
     
     def process(cmd, cmd_opts)
       case cmd

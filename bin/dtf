@@ -13,4 +13,4 @@ require 'dtf/help_system'
 # -- LOAD ERROR SYSTEM
 require 'dtf/error_system'
 
-Dtf::Commands.process(@cmd, @cmd_opts)
+Dtf::Command.process(@cmd, @cmd_opts)
