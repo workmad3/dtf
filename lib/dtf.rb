@@ -9,11 +9,12 @@ module Dtf
   # All methods recieve the @cmd and @cmd_opts parsed from the command-line.
   # They are what was captured in the ivars in Dtf::HelpSystem
   class Command
-    
+    require "dtf/error_system"
+
     # Process both the requested command and all/any parameters.
     # NOTE: This method is the 'master' method. It parses @cmd for which sub-command to execute and then hands
     # off to the appropriate method. All methods are a 1:1 match in their name.
-    # e.g 'create_user' sub-command is matched to the 'create_user' method of this class. 
+    # e.g 'create_user' sub-command is matched to the 'create_user' method of this class.
     #
     # This method requires, and processes, 2 arguments. The 'cmd' to process, and any 'cmd_opts' of that sub-command.
     def self.process(cmd, cmd_opts)
@@ -31,11 +32,11 @@ module Dtf
           delete_vs(cmd, cmd_opts)
 
         else
-          $stderr.puts "Unknown DTF sub-command: #{cmd.inspect}"
+          $stderr.puts "Unknown DTF sub-command: #{cmd}"
           abort()
       end
     end
-    
+
     # This sub-command is used to add a User to the Test Framework system
     #
     # Required Parameters are:
@@ -66,7 +67,7 @@ module Dtf
         raise_error(cmd) # This error here is thrown when not all params are provided
       end
     end
-    
+
     # This sub-command removes a User from the Testing Framework system
     #
     # Required Parameters are:
@@ -112,7 +113,7 @@ module Dtf
         raise_error(cmd)
       end
     end
-    
+
     # This sub-command generates, adds, and associates a Verification Suite in the Testing Framework system.
     #
     # Required Parameters are:
@@ -158,7 +159,7 @@ module Dtf
       else
         raise_error(cmd)
       end
-    end    
+    end
 
   end # End of class
 
