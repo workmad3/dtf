@@ -10,7 +10,4 @@ require 'thor'
 # -- LOAD HELP SYSTEM
 require 'dtf/help_system'
 
-# -- LOAD ERROR SYSTEM
-require 'dtf/error_system'
-
 Dtf::Command.process(@cmd, @cmd_opts)
