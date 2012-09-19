@@ -4,7 +4,7 @@ def raise_error(cmd)
   raise ArgumentError
 rescue
   $stderr.puts "ERROR! #{cmd} did not receive all required options."
-  $stderr.puts "See 'dtf #{cmd} -h' for help with this sub-command"
+  $stderr.puts "#{%x[dtf #{cmd} -h]}"
 
   # Set non-zero exit value on error, for scripting use.
   abort()

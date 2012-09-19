@@ -48,7 +48,7 @@ module Dtf
       if [:user_name_given, :full_name_given, :email_address_given].all? { |sym| cmd_opts.key?(sym) } then
         user = User.where(user_name:     cmd_opts[:user_name],
                            full_name:     cmd_opts[:full_name],
-                           email_address: cmd_opts[:email_address]).first_or_create
+                           email_address: cmd_opts[:email_address]).create
 
         # Check to make sure user was actually saved to the db
         if user.persisted? then
@@ -56,8 +56,8 @@ module Dtf
         else
           # Oops, it wasn't! Notify user and display any error message(s)
           $stderr.puts "ERROR: #{cmd_opts[:user_name].to_s} was NOT created! Please fix the following errors and try again:"
-          user.errors.messages.keys.each do |key|
-            $stderr.puts "#{key.to_s.capitalize.gsub('_', ' ').to_s} #{user.errors.messages[key][0].to_s}!"
+          user.errors.full_messages.each do |msg|
+            $stderr.puts "#{msg}"
           end
           # Now throw a proper error code to the system, while exiting the script
           abort()
