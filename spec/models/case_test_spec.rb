@@ -14,18 +14,21 @@ describe "CaseTest" do
     
     it "should be invalid without being assigned to a analysis case" do
       case_test.should_not be_valid
+      case_test.errors.should_not be_empty
       case_test[:analysis_case_id].should be_nil
       case_test.new_record?.should be_true
     end  
   
     it "should be invalid without a cmd" do    
       case_test.should_not be_valid
+      case_test.errors.should_not be_empty
       case_test.errors.messages[:cmd].should eq(["can't be blank"])
       case_test.new_record?.should be_true
     end
     
     it "should be invalid without a description" do    
       case_test.should_not be_valid
+      case_test.errors.should_not be_empty
       case_test.errors.messages[:description].should eq(["can't be blank"])
       case_test.new_record?.should be_true
     end
@@ -52,7 +55,7 @@ describe "CaseTest" do
 
     it "should have a valid cmd and description" do    
       case_test.should be_valid
-      case_test.errors.messages.should be_empty
+      case_test.errors.should be_empty
       case_test.cmd.should_not be_nil
       case_test.description.should_not be_nil
     end  

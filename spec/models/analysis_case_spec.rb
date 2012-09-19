@@ -14,18 +14,21 @@ describe "AnalysisCase" do
     
     it "should be invalid without being assigned to a verification suite" do    
       analysis_case.should_not be_valid
+      analysis_case.errors.should_not be_empty
       analysis_case[:verification_suite_id].should be_nil
       analysis_case.new_record?.should be_true
     end  
   
     it "should be invalid without a name" do    
       analysis_case.should_not be_valid
+      analysis_case.errors.should_not be_empty
       analysis_case.errors.messages[:name].should eq(["can't be blank"])
       analysis_case.new_record?.should be_true
     end
     
     it "should be invalid without a description" do    
       analysis_case.should_not be_valid
+      analysis_case.errors.should_not be_empty
       analysis_case.errors.messages[:description].should eq(["can't be blank"])
       analysis_case.new_record?.should be_true
     end
@@ -49,7 +52,7 @@ describe "AnalysisCase" do
 
     it "should have a valid name and description" do    
       analysis_case.should be_valid
-      analysis_case.errors.messages.should be_empty
+      analysis_case.errors.should be_empty
       analysis_case.name.should_not be_nil
       analysis_case.description.should_not be_nil
     end  

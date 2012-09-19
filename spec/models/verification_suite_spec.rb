@@ -14,18 +14,21 @@ describe "VerificationSuite" do
     
     it "should be invalid without being assigned to a user" do
       verification_suite.should_not be_valid
+      verification_suite.errors.should_not be_empty
       verification_suite[:user_id].should be_nil
       verification_suite.new_record?.should be_true
     end  
   
     it "should be invalid without a name" do    
       verification_suite.should_not be_valid
+      verification_suite.errors.should_not be_empty
       verification_suite.errors.messages[:name].should eq(["can't be blank"])
       verification_suite.new_record?.should be_true
     end
     
     it "should be invalid without a description" do    
       verification_suite.should_not be_valid
+      verification_suite.errors.should_not be_empty
       verification_suite.errors.messages[:description].should eq(["can't be blank"])
       verification_suite.new_record?.should be_true
     end
@@ -47,7 +50,7 @@ describe "VerificationSuite" do
 
     it "should have a valid name and description" do    
       verification_suite.should be_valid
-      verification_suite.errors.messages.should be_empty
+      verification_suite.errors.should be_empty
       verification_suite.name.should_not be_nil
       verification_suite.description.should_not be_nil      
     end  
