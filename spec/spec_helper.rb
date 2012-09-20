@@ -1,5 +1,5 @@
 # encoding: UTF-8
-
+require 'cover_me'
 require 'dtf'
 require 'rspec'
 require 'turnip'

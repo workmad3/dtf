@@ -24,4 +24,8 @@ group :development, :test do
   gem 'database_cleaner'
 end
 
+group :test do
+  gem 'cover_me'
+end
+
 gemspec
