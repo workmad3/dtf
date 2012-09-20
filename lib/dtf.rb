@@ -1,15 +1,95 @@
 # encoding: UTF-8
 
 require "dtf/version"
+require 'trollop' # Used to implement help system
 
 module Dtf
   load "#{File.join(File.dirname(__FILE__), "/config/environment.rb")}"
+
+  class ErrorSystem
+    # Reusable error response method
+    def self.raise_error(cmd)
+      raise ArgumentError
+    rescue
+      $stderr.puts "ERROR! #{cmd} did not receive all required options."
+      $stderr.puts "Please execute \'dtf #{cmd} -h\' for more information."
+      # Set non-zero exit value on error, for scripting use.
+      abort()
+    end
+
+    def self.display_errors(obj)
+      # TODO: Refactor error display to take sub-command as an arg
+      # and display obj.errors.full_messages.each properly for each arg type.
+      obj.errors.full_messages.all.each do |msg|
+        $stderr.puts "#{msg}"
+      end
+    end
+    
+  end # End of Dtf::ErrorSystem class
+
+  class OptionsParser
+    # List of all sub-commands known within the Help System
+    SUB_COMMANDS = %w(create_user delete_user create_vs delete_vs)
+    
+    def self.parse_cmds
+      # Global options default to '--version|-v' and '--help|-h'
+      global_opts = Trollop::options do
+        version "DTF v#{Dtf::VERSION}"
+        banner <<-EOS
+        #{version}
+        (c) Copyright 2012 David Deryl Downey / Deryl R. Doucette. All Rights Reserved.
+        This is free software; see the LICENSE file for copying conditions.
+        There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+        Usage:
+              dtf -v|--version -h|--help [[sub_cmds <options>] -h|--help]
+
+        Valid [sub_cmds] are: create_(user|vs), delete_(user|vs)
+        See 'dtf [sub_cmd] -h' for each sub_cmd's details and options
+
+      EOS
+        stop_on SUB_COMMANDS
+      end
+
+      @cmd = ARGV.shift
+      @cmd_opts = case @cmd
+      when "create_user"
+        Trollop::options do
+          opt(:user_name, desc="Username for new TF user - REQUIRED", opts={:type => :string, :short => '-u'})
+          opt(:full_name, desc="Real name for new TF user - REQUIRED", opts={:type => :string, :short => '-n'})
+          opt(:email_address, desc="Email address for new TF user - REQUIRED", opts={:type => :string, :short => '-e'})
+        end
+      when "create_vs"
+        Trollop::options do
+          opt(:user_name, desc="TF user to associate this VS with - REQUIRED", opts={:type => :string, :short => '-u'})
+          opt(:name, desc="Name for new VS - REQUIRED", opts={:type => :string, :short => '-n'})
+          opt(:description, desc="Description of VS's intended use - OPTIONAL", opts={:type => :string, :short => '-d', :default => ''})
+        end
+      when "delete_user"
+        Trollop::options do
+          opt(:user_name, desc="Username of TF user to delete - REQUIRED", opts={:type => :string, :short => '-u'})
+          opt(:delete_all, desc="Delete _all_ VSs this user owns", :type => :flag, :default => true)
+        end
+      when "delete_vs"
+        Trollop::options do
+          opt(:user_name, desc="Username of VS owner - REQUIRED", opts={:type => :string, :short => '-u'})
+          opt(:id, desc="ID of VS to be deleted - REQUIRED", opts={:type => :int, :short => '-i'})
+        end
+      when nil
+        Trollop::die "No command specified! Please specify an applicable command"
+      else
+        Trollop::die "Unknown DTF sub-command: #{@cmd.inspect}"
+      end
+      
+      return @cmd, @cmd_opts # Specifically return @cmd and its @cmd_opts 
+    end
+  end # End Dtf::OptionsParser clas
+
 
   # Dtf::Command contains all sub-commands availabe in the DTF master gem.
   # All methods recieve the @cmd and @cmd_opts parsed from the command-line.
   # They are what was captured in the ivars in Dtf::HelpSystem
   class Command
-    require "dtf/error_system"
 
     # Process both the requested command and all/any parameters.
     # NOTE: This method is the 'master' method. It parses @cmd for which sub-command to execute and then hands
@@ -20,16 +100,16 @@ module Dtf
     def self.process(cmd, cmd_opts)
       case cmd
         when "create_user"
-          create_user(cmd, cmd_opts)
+          self.create_user(cmd, cmd_opts)
 
         when "delete_user"
-          delete_user(cmd, cmd_opts)
+          self.delete_user(cmd, cmd_opts)
 
         when "create_vs"
-          create_vs(cmd, cmd_opts)
+          self.create_vs(cmd, cmd_opts)
 
         when "delete_vs"
-          delete_vs(cmd, cmd_opts)
+          self.delete_vs(cmd, cmd_opts)
 
         else
           $stderr.puts "Unknown DTF sub-command: #{cmd}"
@@ -64,7 +144,7 @@ module Dtf
           abort()
         end
       else
-        raise_error(cmd) # This error here is thrown when not all params are provided
+        Dtf::ErrorSystem.raise_error(cmd) # This error here is thrown when not all params are provided
       end
     end
 
@@ -102,15 +182,20 @@ module Dtf
         else
           puts "#{cmd} called with '--delete-all' set or on by default! Deleting all VSs owned by #{cmd_opts[:user_name]}"
           user = User.find_by_user_name(cmd_opts[:user_name])
-          user.verification_suites.all.each do |vs|
-            VerificationSuite.delete(vs)
-          end
-          if user.verification_suites.empty? then
-            User.delete(user)
+          if ! user.nil? then
+            user.verification_suites.all.each do |vs|
+              VerificationSuite.delete(vs)
+            end
+            if user.verification_suites.empty? then
+              User.delete(user)
+            end
+          else
+            $stderr.puts "ERROR: No user named \'#{cmd_opts[:user_name].to_s}\' found!"
+            abort()
           end
         end
       else
-        raise_error(cmd)
+        Dtf::ErrorSystem.raise_error(cmd)
       end
     end
 
@@ -139,7 +224,7 @@ module Dtf
           abort()
         end
       else
-        raise_error(cmd)
+        Dtf::ErrorSystem.raise_error(cmd)
       end
     end
 
@@ -157,7 +242,7 @@ module Dtf
         vs   = user.verification_suites.find(cmd_opts[:id])
         VerificationSuite.delete(vs)
       else
-        raise_error(cmd)
+        Dtf::ErrorSystem.raise_error(cmd)
       end
     end
 
