@@ -27,6 +27,7 @@ lib/bundler/man
 .bundle
 ~*
 coverage
+coverage.data
 .*proj
 *.iml
 .idea/
