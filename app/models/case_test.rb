@@ -1,5 +1,6 @@
 # encoding: UTF-8
 
+# CaseTest is the recording of each individual step of an AnalysisCase's 'test premise'
 class CaseTest < ActiveRecord::Base
 
   attr_accessible :description, :cmd

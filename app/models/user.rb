@@ -1,5 +1,6 @@
 # encoding: UTF-8
 
+# User class owns all Verification Suites in the DTF system
 class User < ActiveRecord::Base
 
   attr_accessible :full_name, :email_address, :user_name

@@ -1,22 +1,29 @@
 # encoding: UTF-8
 
 require "dtf/version"
-require 'trollop' # Used to implement help system
+require 'trollop'
 
 module Dtf
   load "#{File.join(File.dirname(__FILE__), "/config/environment.rb")}"
 
+  # Dtf::ErrorSystem is DTF's custom error management class
   class ErrorSystem
-    # Reusable error response method
+    # Reusable error raising and response method.
+    # Returns exit status code of '1' via abort().
     def self.raise_error(cmd)
       raise ArgumentError
     rescue
       $stderr.puts "ERROR! #{cmd} did not receive all required options."
       $stderr.puts "Please execute \'dtf #{cmd} -h\' for more information."
-      # Set non-zero exit value on error, for scripting use.
       abort()
     end
 
+    # Reusable object error display method.
+    #
+    # Takes an Object as arg and displays that Object's full error messages.
+    # Will return the @user object's full error messages, 1 per line.
+    #
+    # Example usage: Dtf::ErrorSystem.display_errors(@user)
     def self.display_errors(obj)
       # TODO: Refactor error display to take sub-command as an arg
       # and display obj.errors.full_messages.each properly for each arg type.
@@ -25,12 +32,20 @@ module Dtf
       end
     end
     
-  end # End of Dtf::ErrorSystem class
+  end
 
+  # Dtf::OptionsParser is DTF's command/options/parameters parsing class.
+  # It also doubles as DTF's help system.
   class OptionsParser
     # List of all sub-commands known within the Help System
     SUB_COMMANDS = %w(create_user delete_user create_vs delete_vs)
     
+    # ARGV parsing method and options builder. Method depends on Trollop gem.
+    #
+    # Dynamically builds, and returns, the @cmd_opts Hash based on contents of @cmd,
+    # and provides the help system for options/parameters.
+    #
+    # Returned Values: @cmd [Type: String] and @cmd_opts [Type: Hash]
     def self.parse_cmds
       # Global options default to '--version|-v' and '--help|-h'
       global_opts = Trollop::options do
@@ -81,14 +96,13 @@ module Dtf
         Trollop::die "Unknown DTF sub-command: #{@cmd.inspect}"
       end
       
-      return @cmd, @cmd_opts # Specifically return @cmd and its @cmd_opts 
+      return @cmd, @cmd_opts # Explicitly return @cmd and its @cmd_opts 
     end
-  end # End Dtf::OptionsParser clas
+  end
 
 
   # Dtf::Command contains all sub-commands availabe in the DTF master gem.
-  # All methods recieve the @cmd and @cmd_opts parsed from the command-line.
-  # They are what was captured in the ivars in Dtf::HelpSystem
+  # All methods receive the @cmd and @cmd_opts returned by Dtf::OptionsParser.parse_cmds()
   class Command
 
     # Process both the requested command and all/any parameters.
@@ -96,7 +110,8 @@ module Dtf
     # off to the appropriate method. All methods are a 1:1 match in their name.
     # e.g 'create_user' sub-command is matched to the 'create_user' method of this class.
     #
-    # This method requires, and processes, 2 arguments. The 'cmd' to process, and any 'cmd_opts' of that sub-command.
+    # This method requires, and processes, 2 arguments. The first is a String, the second is a Hash.
+    # They are the 'cmd' to process and any options/parameters, stored in the 'cmd_opts' hash, of that sub-command.
     def self.process(cmd, cmd_opts)
       case cmd
         when "create_user"
@@ -246,6 +261,6 @@ module Dtf
       end
     end
 
-  end # End of class
+  end
 
 end # End of module

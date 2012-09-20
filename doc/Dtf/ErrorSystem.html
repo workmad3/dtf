@@ -99,7 +99,18 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Dtf::ErrorSystem is DTF's custom error management class</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -131,7 +142,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Reusable object error display method.</p>
+</div></span>
   
 </li>
 
@@ -154,7 +167,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Reusable error response method.</p>
+<p>Reusable error raising and response method.</p>
 </div></span>
   
 </li>
@@ -178,22 +191,38 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Reusable object error display method.</p>
+
+<p>Takes an Object as arg and displays that Object's full error messages. Will
+return the @user object's full error messages, 1 per line.</p>
+
+<p>Example usage: Dtf::ErrorSystem.display_errors(@user)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-20
-21
-22
-23
-24
-25
-26</pre>
+27
+28
+29
+30
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_display_errors'>display_errors</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='comment'># TODO: Refactor error display to take sub-command as an arg
@@ -219,7 +248,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Reusable error response method</p>
+<p>Reusable error raising and response method. Returns exit status code of '1'
+via abort().</p>
 
 
   </div>
@@ -233,25 +263,23 @@
       <pre class="lines">
 
 
-11
-12
 13
 14
 15
 16
 17
-18</pre>
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_raise_error'>raise_error</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span>
 <span class='kw'>rescue</span>
   <span class='gvar'>$stderr</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ERROR! </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rbrace'>}</span><span class='tstring_content'> did not receive all required options.</span><span class='tstring_end'>&quot;</span></span>
   <span class='gvar'>$stderr</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please execute \'dtf </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rbrace'>}</span><span class='tstring_content'> -h\' for more information.</span><span class='tstring_end'>&quot;</span></span>
-  <span class='comment'># Set non-zero exit value on error, for scripting use.
-</span>  <span class='id identifier rubyid_abort'>abort</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_abort'>abort</span><span class='lparen'>(</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -263,7 +291,7 @@
 </div>
 
     <div id="footer">
-  Generated on Thu Sep 20 00:16:43 2012 by
+  Generated on Thu Sep 20 10:34:27 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>

@@ -103,8 +103,8 @@
   <div class="discussion">
     
 <p>Dtf::Command contains all sub-commands availabe in the DTF master gem. All
-methods recieve the @cmd and @cmd_opts parsed from the command-line. They
-are what was captured in the ivars in Dtf::HelpSystem</p>
+methods receive the @cmd and @cmd_opts returned by
+Dtf::OptionsParser.parse_cmds()</p>
 
 
   </div>
@@ -293,31 +293,31 @@ and <b>must</b> be unique in the system.</p>
       <pre class="lines">
 
 
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
 143
 144
 145
 146
 147
 148
-149</pre>
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 128</span>
+      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_user'>create_user</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='comma'>,</span> <span class='id identifier rubyid_cmd_opts'>cmd_opts</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lbracket'>[</span><span class='symbol'>:user_name_given</span><span class='comma'>,</span> <span class='symbol'>:full_name_given</span><span class='comma'>,</span> <span class='symbol'>:email_address_given</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_sym'>sym</span><span class='op'>|</span> <span class='id identifier rubyid_cmd_opts'>cmd_opts</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>then</span>
@@ -388,23 +388,23 @@ Verification Suite's use. e.g. --description "RSpec Verification"</p>
       <pre class="lines">
 
 
-216
-217
-218
-219
-220
-221
-222
-223
-224
-225
-226
-227
-228
-229</pre>
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 216</span>
+      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_vs'>create_vs</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='comma'>,</span> <span class='id identifier rubyid_cmd_opts'>cmd_opts</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lbracket'>[</span><span class='symbol'>:user_name_given</span><span class='comma'>,</span> <span class='symbol'>:name_given</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_sym'>sym</span><span class='op'>|</span> <span class='id identifier rubyid_cmd_opts'>cmd_opts</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>then</span>
@@ -470,21 +470,6 @@ which is the generic in-house User shipped with DTF.</p>
       <pre class="lines">
 
 
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
 182
 183
 184
@@ -503,10 +488,25 @@ which is the generic in-house User shipped with DTF.</p>
 197
 198
 199
-200</pre>
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 167</span>
+      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 182</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delete_user'>delete_user</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='comma'>,</span> <span class='id identifier rubyid_cmd_opts'>cmd_opts</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lbracket'>[</span><span class='symbol'>:user_name_given</span><span class='comma'>,</span> <span class='symbol'>:delete_all</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_sym'>sym</span><span class='op'>|</span> <span class='id identifier rubyid_cmd_opts'>cmd_opts</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>then</span>
@@ -582,19 +582,19 @@ the Verification Suite you wish to delete, as provided by @vs.id</p>
       <pre class="lines">
 
 
-238
-239
-240
-241
-242
-243
-244
-245
-246
-247</pre>
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 238</span>
+      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 253</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delete_vs'>delete_vs</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='comma'>,</span> <span class='id identifier rubyid_cmd_opts'>cmd_opts</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lbracket'>[</span><span class='symbol'>:user_name_given</span><span class='comma'>,</span> <span class='symbol'>:id_given</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_sym'>sym</span><span class='op'>|</span> <span class='id identifier rubyid_cmd_opts'>cmd_opts</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>then</span>
@@ -629,8 +629,9 @@ execute and then hands off to the appropriate method. All methods are a 1:1
 match in their name. e.g 'create_user' sub-command is matched to the
 'create_user' method of this class.</p>
 
-<p>This method requires, and processes, 2 arguments. The 'cmd' to process, and
-any 'cmd_opts' of that sub-command.</p>
+<p>This method requires, and processes, 2 arguments. The first is a String,
+the second is a Hash. They are the 'cmd' to process and any
+options/parameters, stored in the 'cmd_opts' hash, of that sub-command.</p>
 
 
   </div>
@@ -644,28 +645,28 @@ any 'cmd_opts' of that sub-command.</p>
       <pre class="lines">
 
 
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
 115
 116
 117
-118</pre>
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/dtf.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_process'>process</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='comma'>,</span> <span class='id identifier rubyid_cmd_opts'>cmd_opts</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_cmd'>cmd</span>
@@ -696,7 +697,7 @@ any 'cmd_opts' of that sub-command.</p>
 </div>
 
     <div id="footer">
-  Generated on Thu Sep 20 00:16:43 2012 by
+  Generated on Thu Sep 20 10:34:27 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>

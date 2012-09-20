@@ -1,5 +1,8 @@
 # encoding: UTF-8
 
+# AnalysisCase defines the 'test premise', which is broken down into steps called CaseTests
+#
+# AnalysisCases own CaseTests. Users own each CaseTest through its AnalysisCase
 class AnalysisCase < ActiveRecord::Base
 
   attr_accessible :name, :description
