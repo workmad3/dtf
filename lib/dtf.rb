@@ -46,7 +46,7 @@ module Dtf
     # and provides the help system for options/parameters.
     #
     # Returned Values: @cmd [Type: String] and @cmd_opts [Type: Hash]
-    def self.parse_cmds
+    def self.parse_cmds(arg=ARGV)
       # Global options default to '--version|-v' and '--help|-h'
       global_opts = Trollop::options do
         version "DTF v#{Dtf::VERSION}"
@@ -66,7 +66,7 @@ module Dtf
         stop_on SUB_COMMANDS
       end
 
-      @cmd = ARGV.shift
+      @cmd = arg.shift
       @cmd_opts = case @cmd
       when "create_user"
         Trollop::options do
