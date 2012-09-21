@@ -23,3 +23,14 @@ dtf-session becomes a dependency of dtf-shell which will be written to support
 specific Shells
 
 dtf-rvm will have a dependency on both dtf-session, and rvm gems
+
+wrap the trollop use of ARGV in a method that takes an argument, 
+call the argument 'argv' and then pass in ARGV in your bin-script
+and then in a test, pass in a different array. In the trollop code,
+adjust any reference to ARGV to point to argv.
+
+the trollop parse method (from my quick google) is defined with 
+'def parse cmdline=ARGV', you could follow a similar idea
+(same with options -  def options args=ARGV, *a, &b)
+Also, check out 'ri CLI'
+Rework dtf module to apply Command design pattern to Dtf::Command and clean up case statements.
