@@ -6,5 +6,8 @@
 
 require 'dtf'
 
-@cmd, @cmd_opts = Dtf::OptionsParser.parse_cmds # Parse the command-line, and return the cmd & its specific cmd_opts
-Dtf::Command.process(@cmd, @cmd_opts) # Now process that cmd & its cmd_opts
+@parser = Dtf::OptionsParser.new
+@cmd, @cmd_opts = @parser.parse_cmds # Parse the command-line, and return the cmd & its specific cmd_opts
+
+@new_cmd = Dtf::Command.create_cmd(@cmd) # Create a command named after contents of @cmd var
+@new_cmd.execute(@cmd_opts) # Pass @cmd_opts to that command's execute method
