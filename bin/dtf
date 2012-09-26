@@ -6,6 +6,4 @@
 
 require 'dtf'
 
-cmd, cmd_opts = Dtf::OptionsParser.new(ARGV).parse_cmds
-
-Dtf::Command.create_cmd(cmd, cmd_opts).execute # Create a command named after contents of @cmd var
+Dtf::CLI.start
