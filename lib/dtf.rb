@@ -4,7 +4,13 @@ require 'dtf/version'
 require 'trollop'
 
 module Dtf
-  load "#{File.join(File.dirname(__FILE__), "/config/environment.rb")}"
+  module CLI
+    def self.start(args=ARGV, environment = nil)
+      load environment || "#{File.join(File.dirname(__FILE__), "/config/environment.rb")}"
+      cmd, cmd_opts = Dtf::OptionsParser.new(ARGV).parse_cmds
+      Dtf::Command.create_cmd(cmd, cmd_opts).execute # Create a command named after contents of @cmd var
+    end
+  end
   
   module Command
     def self.create_cmd(cmd, options)
